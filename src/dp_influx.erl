@@ -31,7 +31,6 @@ parse_metric(<<",", R/binary>>, Metric, M) ->
 parse_metric(<<C, R/binary>>, Metric, M) ->
     parse_metric(R, <<Metric/binary, C>>, M).
 
-
 parse_tags(<<" ", R/binary>>, Tag, M = #{key := Ks, tags := Tags}) ->
     {K, V} = parse_tag(Tag, <<>>),
     Tags1 = lists:sort([{<<"">>, K, V} | Tags]),

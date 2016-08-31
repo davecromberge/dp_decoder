@@ -2,7 +2,7 @@
              [{description,"Collection of decoders for different metric protocols"},
               {vsn,"0.2.5"},
               {registered,[]},
-              {applications,[kernel,stdlib]},
+              {applications,[kernel,stdlib,mmath]},
               {env,[]},
               {modules,[]},
               {maintainers,["Heinz N. Gies"]},
