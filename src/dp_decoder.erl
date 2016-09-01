@@ -37,11 +37,12 @@ to_number(X) ->
 %% @doc Normalizes a timestamp to second precision.  For higher precision
 %% timestamps, this is lossy. Protocols such as Influx can send timestamps in
 %% one of [n,u,ms,s,m,h].
-to_time(X) ->
+to_time(Time) when is_binary(Time) ->
+    N = to_number(Time),
     SecondsPrecision = 9,
-    Log = trunc(math:log10(X)),
+    Log = trunc(math:log10(N)),
     Exp = math:pow(10, Log - SecondsPrecision),
-    round(X / Exp).
+    round(N / Exp).
 
 -spec parse(Decoder::module(), In::binary()) ->
                    {ok, [dp_decoder:metric()]} | {error, term()} | undefined.
