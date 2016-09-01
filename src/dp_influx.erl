@@ -70,7 +70,7 @@ parse_metric(<<C, R/binary>>, K) ->
 
 parse_value(<<"i">>, V) ->
     binary_to_integer(V);
-parse_value(<<>>, <<"0">>) ->
+parse_value(<<>>, <<0>>) ->
     0.0;
 parse_value(<<>>, V) ->
     binary_to_float(V);
