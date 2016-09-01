@@ -54,7 +54,7 @@ parse_tag(<<C, R/binary>>, K) ->
 parse_metrics(<<" ", TimeS/binary>>, Metric, Metrics,
               M = #{key := [K1 | Ks], metric := Ms}) ->
     Metrics1 = [parse_metric(Metric, <<>>) | Metrics],
-    Time = dp_decoder:to_number(TimeS) div (1000 * 1000 * 1000),
+    Time = dp_decoder:to_time(TimeS),
     M1 = M#{time := Time },
     {ok, [M1#{value := V, metric := Ms ++ [K],
               key := [K1, K | Ks]} || {K, V} <- Metrics1]};
